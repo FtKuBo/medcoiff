@@ -1,5 +1,21 @@
 <script setup lang="ts">
-// Components will be imported here
+import { ref } from 'vue'
+
+const showConfirmation = ref(false)
+const form = ref<HTMLFormElement | null>(null)
+
+const handleSubmit = (event: Event) => {
+  event.preventDefault()
+  showConfirmation.value = true
+  // Clear the form
+  if (form.value) {
+    form.value.reset()
+  }
+}
+
+const closeConfirmation = () => {
+  showConfirmation.value = false
+}
 </script>
 
 <template>
@@ -116,7 +132,7 @@
           <div class="col-md-8">
             <div class="card">
               <div class="card-body">
-                <form>
+                <form @submit="handleSubmit" ref="form">
                   <div class="mb-3">
                     <label for="name" class="form-label">Nom complet</label>
                     <input type="text" class="form-control" id="name" required>
@@ -217,6 +233,20 @@
         <p>&copy; 2024 MedCoiff. Tous droits réservés.</p>
       </div>
     </footer>
+
+    <!-- Confirmation Message -->
+    <div v-if="showConfirmation" class="confirmation-overlay" @click="closeConfirmation">
+      <div class="confirmation-message" @click.stop>
+        <button class="close-button" @click="closeConfirmation">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="confirmation-content">
+          <i class="fas fa-check-circle"></i>
+          <h3>Réservation confirmée !</h3>
+          <p>Nous vous contacterons bientôt pour confirmer votre rendez-vous.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -256,5 +286,102 @@
 
 section {
   scroll-margin-top: 80px;
+}
+
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.confirmation-message {
+  position: relative;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #dc3545;
+}
+
+.confirmation-content {
+  text-align: center;
+  padding: 1rem;
+}
+
+.confirmation-content i {
+  font-size: 3rem;
+  color: #28a745;
+  margin-bottom: 1rem;
+}
+
+.confirmation-content h3 {
+  color: #28a745;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.confirmation-overlay.v-leave-active {
+  animation: fadeIn 0.3s ease-out reverse;
+}
+
+.confirmation-message.v-leave-active {
+  animation: slideOut 0.3s ease-out;
 }
 </style>
