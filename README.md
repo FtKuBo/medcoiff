@@ -24,5 +24,10 @@ npm install
 npm run dev
 ```
 
+## 🚀 Déploiement
+Le site est automatiquement déployé sur GitHub Pages à chaque push sur la branche main.
+- Site en ligne : https://[votre-username].github.io/medcoiff/
+- Le déploiement est géré par GitHub Actions
+
 ## 📝 Notes
 Ce projet est développé dans le cadre du cours sur la Conception Centrée sur l'Usager (CCU), mettant l'accent sur le prototypage et la prise en compte des objectifs des utilisateurs.
