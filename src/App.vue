@@ -1,30 +1,260 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+// Components will be imported here
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="app">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">MedCoiff</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#accueil">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#rendez-vous">Rendez-vous</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#a-propos">À propos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-section">
+      <div class="container h-100">
+        <div class="row h-100 align-items-center">
+          <div class="col-lg-6 hero-content">
+            <h1 class="display-3 fw-bold mb-4">Bienvenue chez <span class="brand-highlight">MedCoiff</span></h1>
+            <p class="lead mb-4">Votre style, notre passion. Découvrez l'excellence de la coiffure.</p>
+            <div class="hero-features mb-5">
+              <div class="feature-item">
+                <i class="fas fa-cut"></i>
+                <span>Coupes tendance</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-paint-brush"></i>
+                <span>Coloration experte</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-star"></i>
+                <span>Service premium</span>
+              </div>
+            </div>
+            <div class="hero-buttons">
+              <a href="#rendez-vous" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-calendar-alt me-2"></i>Prendre rendez-vous
+              </a>
+              <a href="#services" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-list me-2"></i>Nos services
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-6 hero-image-container d-none d-lg-block">
+            <div class="hero-image">
+              <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Coiffure professionnelle" class="img-fluid rounded-3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Nos Services</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Coupe de cheveux</h5>
+                <p class="card-text">Coupe personnalisée selon vos envies et votre style.</p>
+                <p class="price">À partir de 25€</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Coloration</h5>
+                <p class="card-text">Coloration professionnelle pour sublimer votre style.</p>
+                <p class="price">À partir de 45€</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Brushing</h5>
+                <p class="card-text">Mise en beauté pour toutes les occasions.</p>
+                <p class="price">À partir de 35€</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section id="rendez-vous" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Prendre rendez-vous</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Nom complet</label>
+                    <input type="text" class="form-control" id="name" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Téléphone</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="service" class="form-label">Service souhaité</label>
+                    <select class="form-select" id="service" required>
+                      <option value="">Choisir un service</option>
+                      <option value="coupe">Coupe de cheveux</option>
+                      <option value="coloration">Coloration</option>
+                      <option value="brushing">Brushing</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="date" class="form-label">Date souhaitée</label>
+                    <input type="date" class="form-control" id="date" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="time" class="form-label">Heure souhaitée</label>
+                    <input type="time" class="form-control" id="time" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Réserver</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="a-propos" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">À propos de nous</h2>
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <p class="lead">MedCoiff est un salon de coiffure moderne où nous mettons l'accent sur la qualité et le service personnalisé.</p>
+            <p>Notre équipe de coiffeurs professionnels est là pour vous offrir une expérience unique et vous aider à exprimer votre style.</p>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Horaires d'ouverture</h5>
+                <ul class="list-unstyled">
+                  <li>Lundi - Vendredi: 9h00 - 19h00</li>
+                  <li>Samedi: 9h00 - 18h00</li>
+                  <li>Dimanche: Fermé</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Contact</h2>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Informations de contact</h5>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Coiffure, 75000 Paris</p>
+                <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@medcoiff.fr</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Nous suivre</h5>
+                <div class="social-links">
+                  <a href="#" class="btn btn-outline-primary me-2"><i class="fab fa-facebook"></i></a>
+                  <a href="#" class="btn btn-outline-primary me-2"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="btn btn-outline-primary"><i class="fab fa-twitter"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+      <div class="container text-center">
+        <p>&copy; 2024 MedCoiff. Tous droits réservés.</p>
+      </div>
+    </footer>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.hero-section {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/src/assets/salon-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding-top: 80px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.card {
+  transition: transform 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.price {
+  font-weight: bold;
+  color: #0d6efd;
+  margin-top: 1rem;
+}
+
+.social-links {
+  margin-top: 1rem;
+}
+
+section {
+  scroll-margin-top: 80px;
 }
 </style>
