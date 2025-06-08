@@ -100,16 +100,12 @@ button:focus-visible {
 }
 
 .hero-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-  background-size: cover;
-  background-position: center;
-  background-attachment: scroll;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
+  padding: 120px 0;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 6rem 0 2rem;
 }
 
 .hero-section::before {
@@ -119,13 +115,14 @@ button:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(13, 110, 253, 0.3), rgba(13, 202, 240, 0.3));
-  animation: gradientShift 15s ease infinite;
+  background: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover;
+  opacity: 0.2;
+  z-index: 0;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding: 1rem;
   animation: fadeInUp 1s ease-out;
 }

@@ -1,20 +1,32 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Calendar from './components/Calendar.vue'
 
 const showConfirmation = ref(false)
 const form = ref<HTMLFormElement | null>(null)
+const selectedAppointment = ref<{ date: string; timeSlot: string } | null>(null)
+const calendarResetTrigger = ref(0)
 
 const handleSubmit = (event: Event) => {
   event.preventDefault()
-  showConfirmation.value = true
-  // Clear the form
-  if (form.value) {
-    form.value.reset()
+  if (selectedAppointment.value) {
+    showConfirmation.value = true
+    // Clear the form
+    if (form.value) {
+      form.value.reset()
+    }
+    selectedAppointment.value = null
+    // Trigger calendar reset
+    calendarResetTrigger.value++
   }
 }
 
 const closeConfirmation = () => {
   showConfirmation.value = false
+}
+
+const handleDateSelected = (appointment: { date: string; timeSlot: string }) => {
+  selectedAppointment.value = appointment
 }
 </script>
 
@@ -154,15 +166,27 @@ const closeConfirmation = () => {
                       <option value="brushing">Brushing</option>
                     </select>
                   </div>
-                  <div class="mb-3">
-                    <label for="date" class="form-label">Date souhaitée</label>
-                    <input type="date" class="form-control" id="date" required>
+                  <div class="mb-4">
+                    <h5 class="mb-3">Choisissez votre créneau</h5>
+                    <Calendar 
+                      @date-selected="handleDateSelected" 
+                      :reset-trigger="calendarResetTrigger"
+                    />
+                    <div v-if="selectedAppointment" class="mt-3 p-3 bg-light rounded">
+                      <p class="mb-0">
+                        <strong>Créneau sélectionné :</strong><br>
+                        Date : {{ selectedAppointment.date }}<br>
+                        Heure : {{ selectedAppointment.timeSlot }}
+                      </p>
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label for="time" class="form-label">Heure souhaitée</label>
-                    <input type="time" class="form-control" id="time" required>
-                  </div>
-                  <button type="submit" class="btn btn-primary w-100">Réserver</button>
+                  <button 
+                    type="submit" 
+                    class="btn btn-primary w-100"
+                    :disabled="!selectedAppointment"
+                  >
+                    Réserver
+                  </button>
                 </form>
               </div>
             </div>

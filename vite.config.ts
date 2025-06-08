@@ -5,5 +5,5 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   base: '/medcoiff/',
-  build: { outDir: 'dist' } 
+  build: { outDir: 'dist' }
 })
